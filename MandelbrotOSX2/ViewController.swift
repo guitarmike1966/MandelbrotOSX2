@@ -10,6 +10,9 @@ import Cocoa
 
 class ViewController: NSViewController {
 
+    @IBOutlet weak var MandelbrotView: CustomView!
+    @IBOutlet weak var NextButton: NSButton!
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -22,6 +25,15 @@ class ViewController: NSViewController {
         }
     }
 
+    @IBAction func NextButtonClick(_ sender: Any) {
+        // MandelbrotView.xa += 0.1
+        MandelbrotView.xb -= 0.02
+        MandelbrotView.ya += 0.01
+        MandelbrotView.yb -= 0.01
 
+        let rect = MandelbrotView.visibleRect
+        MandelbrotView.setNeedsDisplay(rect)
+    }
+    
 }
 

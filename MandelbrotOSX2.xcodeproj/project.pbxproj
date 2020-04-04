@@ -13,6 +13,7 @@
 		D9E9851B24382DF900628100 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D9E9851924382DF900628100 /* Main.storyboard */; };
 		D9E9852724382DF900628100 /* MandelbrotOSX2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E9852624382DF900628100 /* MandelbrotOSX2Tests.swift */; };
 		D9E9853224382DF900628100 /* MandelbrotOSX2UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E9853124382DF900628100 /* MandelbrotOSX2UITests.swift */; };
+		D9E9854024382E6400628100 /* CustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E9853F24382E6400628100 /* CustomView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +47,7 @@
 		D9E9852D24382DF900628100 /* MandelbrotOSX2UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MandelbrotOSX2UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9E9853124382DF900628100 /* MandelbrotOSX2UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MandelbrotOSX2UITests.swift; sourceTree = "<group>"; };
 		D9E9853324382DF900628100 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D9E9853F24382E6400628100 /* CustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +100,7 @@
 			children = (
 				D9E9851324382DF800628100 /* AppDelegate.swift */,
 				D9E9851524382DF800628100 /* ViewController.swift */,
+				D9E9853F24382E6400628100 /* CustomView.swift */,
 				D9E9851724382DF900628100 /* Assets.xcassets */,
 				D9E9851924382DF900628100 /* Main.storyboard */,
 				D9E9851C24382DF900628100 /* Info.plist */,
@@ -254,6 +257,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D9E9854024382E6400628100 /* CustomView.swift in Sources */,
 				D9E9851624382DF800628100 /* ViewController.swift in Sources */,
 				D9E9851424382DF800628100 /* AppDelegate.swift in Sources */,
 			);

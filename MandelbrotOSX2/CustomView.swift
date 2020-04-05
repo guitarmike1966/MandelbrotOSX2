@@ -18,16 +18,19 @@ class CustomView: NSView {
     
     override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)
-        
+
         // Drawing code here.
         
+        var timeStamp = Date()
+        print("NSView:draw() start: \(timeStamp)")
+
         guard let context = NSGraphicsContext.current?.cgContext
             else
         {
             print("Error getting current context")
             return
         }
-        
+
         // print("Get Current Context successful")
         
         //        context.setStrokeColor(UIColor.red.cgColor)
@@ -36,23 +39,38 @@ class CustomView: NSView {
         //        for x in 0..<250 {
         //            setPixel(context: context, x: x, y: 200, color: .red)
         //        }
-        
+
         for x in 0..<Int(self.frame.width) {
             for y in 0..<Int(self.frame.height) {
                 let color = Mandelbrot(Px: x, Py: y)
                 setPixel(context: context, x: x, y: y, color: color)
             }
         }
-        
+
+        timeStamp = Date()
+        print("NSView:draw() end: \(timeStamp)")
+
+//        let bitmapImageRep = self.bitmapImageRepForCachingDisplay(in: self.visibleRect)
+//
+//        let tempImage = NSImage(size: NSSize(width: self.frame.width, height: self.frame.height))
+//        tempImage.addRepresentation(bitmapImageRep!)
+//
+//        let desktopURL = FileManager.default.urls(for: .downloadsDirectory, in: .userDomainMask).first!
+//        let destinationURL = desktopURL.appendingPathComponent("my-image.png")
+//        let saveResult = tempImage.pngWrite(to: destinationURL)
+//        print("save result: \(saveResult)")
+//        print("image information: \(tempImage.pngData)")
     }
-    
+
+
     private func setPixel(context: CGContext, x: Int, y: Int, color: NSColor)
     {
         context.setLineWidth(1)
         context.setStrokeColor(color.cgColor)
         context.stroke(CGRect(x: CGFloat(x), y: CGFloat(y), width: 0.5, height: 0.5))
     }
-    
+
+
     //    private func getPixel(point: CGPoint) -> NSColor {
     //        let colorSpace: CGColorSpace = CGColorSpaceCreateDeviceRGB()
     //        let bitmapInfo = CGBitmapInfo(rawValue: CGImageAlphaInfo.premultipliedLast.rawValue)
@@ -74,7 +92,8 @@ class CustomView: NSView {
     //
     //        return color
     //    }
-    
+
+
     private func Mandelbrot(Px: Int, Py: Int) -> NSColor {
         
         let imgx = self.frame.width
@@ -134,6 +153,33 @@ class CustomView: NSView {
     }
     
 }
+
+
+extension NSView {
+    
+    /// Get `NSImage` representation of the view.
+    ///
+    /// - Returns: `NSImage` of view
+    
+    func image() -> NSImage {
+        var timeStamp = Date()
+        print("NSView:image() start: \(timeStamp)")
+
+        let imageRepresentation = bitmapImageRepForCachingDisplay(in: bounds)!
+
+        timeStamp = Date()
+        print("NSView:image() midpoint: \(timeStamp)")
+
+        // cacheDisplay(in: bounds, to: imageRepresentation)
+
+        timeStamp = Date()
+        print("NSView:image() end: \(timeStamp)")
+
+        return NSImage(cgImage: imageRepresentation.cgImage!, size: bounds.size)
+    }
+    
+}
+
 
 
 

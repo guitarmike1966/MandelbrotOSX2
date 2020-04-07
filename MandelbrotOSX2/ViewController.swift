@@ -10,18 +10,30 @@ import Cocoa
 
 class ViewController: NSViewController {
 
-    var imageCounter: Int = 0
-
-    @IBOutlet weak var MandelbrotView: CustomView!
-    // @IBOutlet weak var MandelbrotImageView: CustomImageView!
+    @IBOutlet weak var MandelbrotImageView: NSImageView!
+    // @IBOutlet weak var MandelbrotView: CustomView!
     @IBOutlet weak var NextButton: NSButton!
 
+    var imageCounter: Int = 0
+
+    var xa: Double = -2.0
+    var xb: Double = 1.0
+
+    var ya: Double = -1.25
+    var yb: Double = 1.25
+
     override func viewDidLoad() {
+        var timeStamp = Date()
+        print("NSViewController:viewDidLoad() start: \(timeStamp)")
+
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
 
         // let tempView = CustomView(frame: MandelbrotView.frame)
+        
+        timeStamp = Date()
+        print("NSViewController:viewDidLoad() end: \(timeStamp)")
     }
 
 
@@ -29,6 +41,42 @@ class ViewController: NSViewController {
         didSet {
         // Update the view, if already loaded.
         }
+    }
+
+
+    override func viewDidDisappear() {
+        var timeStamp = Date()
+        print("NSViewController:viewDidDisappear(): \(timeStamp)")
+    }
+
+
+    override func viewWillDisappear() {
+        var timeStamp = Date()
+        print("NSViewController:viewWillDisappear(): \(timeStamp)")
+    }
+
+
+    override func viewWillLayout() {
+        var timeStamp = Date()
+        print("NSViewController:viewWillLayout(): \(timeStamp)")
+    }
+
+
+    override func viewWillAppear() {
+        var timeStamp = Date()
+        print("NSViewController:viewWillAppear(): \(timeStamp)")
+    }
+
+
+    override func viewDidLayout() {
+        var timeStamp = Date()
+        print("NSViewController:viewDidLayout(): \(timeStamp)")
+    }
+
+
+    override func viewDidAppear() {
+        var timeStamp = Date()
+        print("NSViewController:viewDidAppear(): \(timeStamp)")
     }
 
 
@@ -42,29 +90,54 @@ class ViewController: NSViewController {
         var timeStamp = Date()
         print("NSViewController:NextButtonClick() start: \(timeStamp)")
 
-        let tempImage = MandelbrotView.image()
+//        let rect = MandelbrotImageView.visibleRect
+//        MandelbrotImageView.setNeedsDisplay(rect)
 
-        timeStamp = Date()
-        print("NSViewController:NextButtonClick() midpoint: \(timeStamp)")
+        for x in 0..<300 {
 
-        let downloadURL = FileManager.default.urls(for: .downloadsDirectory, in: .userDomainMask).first!
-        imageCounter += 1
-        let fileName = String(format: "mandelbrot-%04d.png", imageCounter)
-        let destinationURL = downloadURL.appendingPathComponent(fileName)
-        let saveResult = tempImage.pngWrite(to: destinationURL)
-        // print("save result: \(saveResult)")
-        // print("image information: \(tempImage.pngData)")
+            timeStamp = Date()
+            print("\nNSViewController:NextButtonClick() loop start: \(timeStamp)")
 
-        timeStamp = Date()
-        print("NSViewController:NextButtonClick() ready to resize: \(timeStamp)")
+            timeStamp = Date()
+            print("                                      point A: \(timeStamp)")
 
-        // MandelbrotView.xa += 0.1
-        MandelbrotView.xb -= 0.02
-        MandelbrotView.ya += 0.01
-        MandelbrotView.yb -= 0.01
+            let tempImage = CustomImageView(frame: NSRect(x: 0, y: 0, width: 800, height: 600))
 
-        let rect = MandelbrotView.visibleRect
-        MandelbrotView.setNeedsDisplay(rect)
+            tempImage.xa = self.xa
+            tempImage.xb = self.xb
+            tempImage.ya = self.ya
+            tempImage.yb = self.yb
+
+            timeStamp = Date()
+            print("                                      point B: \(timeStamp)")
+
+            tempImage.draw(NSRect(x: 0, y: 0, width: 800, height: 600))
+
+            timeStamp = Date()
+            print("                                      point C: \(timeStamp)")
+
+            MandelbrotImageView.image = tempImage.image
+
+            timeStamp = Date()
+            print("                                      point D: \(timeStamp)")
+
+            let downloadURL = FileManager.default.urls(for: .downloadsDirectory, in: .userDomainMask).first!
+            imageCounter += 1
+            let fileName = String(format: "mandelbrot-%04d.png", imageCounter)
+            let destinationURL = downloadURL.appendingPathComponent(fileName)
+            let saveResult = tempImage.image!.pngWrite(to: destinationURL)
+
+            timeStamp = Date()
+            print("                                      point E: \(timeStamp)")
+
+            self.xb -= 0.01
+            self.ya += 0.005
+            self.yb -= 0.005
+
+            timeStamp = Date()
+            print("NSViewController:NextButtonClick() loop end: \(timeStamp)")
+
+        }
 
         timeStamp = Date()
         print("NSViewController:NextButtonClick() end: \(timeStamp)")

@@ -706,11 +706,15 @@
             <objects>
                 <viewController id="XfG-lQ-9wD" customClass="ViewController" customModule="MandelbrotOSX2" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="m2S-Jp-Qdl">
-                        <rect key="frame" x="0.0" y="0.0" width="1024" height="800"/>
+                        <rect key="frame" x="0.0" y="0.0" width="689" height="446"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ptt-vV-1xN">
+                                <rect key="frame" x="20" y="70" width="649" height="356"/>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="zhQ-NG-V0y"/>
+                            </imageView>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="wEY-jr-D8N">
-                                <rect key="frame" x="470.5" y="19" width="83" height="31"/>
+                                <rect key="frame" x="303.5" y="19" width="83" height="31"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="NST-je-Cey"/>
                                 </constraints>
@@ -722,27 +726,24 @@
                                     <action selector="NextButtonClick:" target="XfG-lQ-9wD" id="pQx-o9-i1J"/>
                                 </connections>
                             </button>
-                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="Ac1-Ic-9BI" customClass="CustomView" customModule="MandelbrotOSX2" customModuleProvider="target">
-                                <rect key="frame" x="20" y="70" width="984" height="710"/>
-                            </customView>
                         </subviews>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="Ac1-Ic-9BI" secondAttribute="trailing" constant="20" id="EmE-Hh-ltu"/>
-                            <constraint firstItem="Ac1-Ic-9BI" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="GUL-8D-jFc"/>
+                            <constraint firstItem="ptt-vV-1xN" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="20" id="9oj-db-QYM"/>
                             <constraint firstItem="wEY-jr-D8N" firstAttribute="centerX" secondItem="m2S-Jp-Qdl" secondAttribute="centerX" id="S7b-zU-xml"/>
+                            <constraint firstItem="ptt-vV-1xN" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="aVm-2J-1iY"/>
+                            <constraint firstAttribute="trailing" secondItem="ptt-vV-1xN" secondAttribute="trailing" constant="20" id="dX8-e4-q7a"/>
                             <constraint firstAttribute="bottom" secondItem="wEY-jr-D8N" secondAttribute="bottom" constant="20" id="kCt-J7-cNw"/>
-                            <constraint firstItem="wEY-jr-D8N" firstAttribute="top" secondItem="Ac1-Ic-9BI" secondAttribute="bottom" constant="20" id="wLD-zy-yKV"/>
-                            <constraint firstItem="Ac1-Ic-9BI" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="20" id="yGm-7X-eUF"/>
+                            <constraint firstItem="wEY-jr-D8N" firstAttribute="top" secondItem="ptt-vV-1xN" secondAttribute="bottom" constant="20" id="pPM-4G-qZ5"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="MandelbrotView" destination="Ac1-Ic-9BI" id="yfw-dP-m7w"/>
+                        <outlet property="MandelbrotImageView" destination="ptt-vV-1xN" id="OiW-da-Abn"/>
                         <outlet property="NextButton" destination="wEY-jr-D8N" id="W35-i5-6w3"/>
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="74" y="960"/>
+            <point key="canvasLocation" x="75.5" y="803"/>
         </scene>
     </scenes>
 </document>

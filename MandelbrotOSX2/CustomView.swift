@@ -20,7 +20,7 @@ class CustomView: NSView {
         super.draw(dirtyRect)
 
         // Drawing code here.
-        
+
         var timeStamp = Date()
         print("NSView:draw() start: \(timeStamp)")
 
@@ -60,6 +60,24 @@ class CustomView: NSView {
 //        let saveResult = tempImage.pngWrite(to: destinationURL)
 //        print("save result: \(saveResult)")
 //        print("image information: \(tempImage.pngData)")
+    }
+
+
+    func image() -> NSImage {
+        var timeStamp = Date()
+        print("NSView:image() start: \(timeStamp)")
+
+        let imageRepresentation = bitmapImageRepForCachingDisplay(in: bounds)!
+
+        timeStamp = Date()
+        print("NSView:image() midpoint: \(timeStamp)")
+
+        // cacheDisplay(in: bounds, to: imageRepresentation)
+
+        timeStamp = Date()
+        print("NSView:image() end: \(timeStamp)")
+
+        return NSImage(cgImage: imageRepresentation.cgImage!, size: bounds.size)
     }
 
 
@@ -153,33 +171,6 @@ class CustomView: NSView {
     }
     
 }
-
-
-extension NSView {
-    
-    /// Get `NSImage` representation of the view.
-    ///
-    /// - Returns: `NSImage` of view
-    
-    func image() -> NSImage {
-        var timeStamp = Date()
-        print("NSView:image() start: \(timeStamp)")
-
-        let imageRepresentation = bitmapImageRepForCachingDisplay(in: bounds)!
-
-        timeStamp = Date()
-        print("NSView:image() midpoint: \(timeStamp)")
-
-        // cacheDisplay(in: bounds, to: imageRepresentation)
-
-        timeStamp = Date()
-        print("NSView:image() end: \(timeStamp)")
-
-        return NSImage(cgImage: imageRepresentation.cgImage!, size: bounds.size)
-    }
-    
-}
-
 
 
 

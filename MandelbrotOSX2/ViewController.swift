@@ -93,7 +93,7 @@ class ViewController: NSViewController {
 //        let rect = MandelbrotImageView.visibleRect
 //        MandelbrotImageView.setNeedsDisplay(rect)
 
-        for x in 0..<300 {
+        for x in 0..<600 {
 
             timeStamp = Date()
             print("\nNSViewController:NextButtonClick() loop start: \(timeStamp)")
@@ -130,9 +130,18 @@ class ViewController: NSViewController {
             timeStamp = Date()
             print("                                      point E: \(timeStamp)")
 
-            self.xb -= 0.01
-            self.ya += 0.005
-            self.yb -= 0.005
+            // shrink by 1%
+
+            let xWidth = self.xb - self.xa
+            let xHeight = self.yb - self.ya
+
+            let xShrink = xWidth * 0.0010
+            let yShrink = xHeight * 0.0010
+
+            self.xa += (xShrink * 1)
+            self.xb -= (xShrink * 3)
+            self.ya += (yShrink * 2)
+            self.yb -= (yShrink * 2)
 
             timeStamp = Date()
             print("NSViewController:NextButtonClick() loop end: \(timeStamp)")

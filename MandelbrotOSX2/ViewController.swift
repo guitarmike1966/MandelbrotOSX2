@@ -19,8 +19,8 @@ class ViewController: NSViewController {
     var xa: Double = -2.0
     var xb: Double = 1.0
 
-    var ya: Double = -1.25
-    var yb: Double = 1.25
+    var ya: Double = -1.5
+    var yb: Double = 1.5
 
     override func viewDidLoad() {
         var timeStamp = Date()
@@ -93,7 +93,7 @@ class ViewController: NSViewController {
 //        let rect = MandelbrotImageView.visibleRect
 //        MandelbrotImageView.setNeedsDisplay(rect)
 
-        for x in 0..<800 {
+        for x in 0..<5 {
 
             timeStamp = Date()
             print("\nNSViewController:NextButtonClick() loop start: \(timeStamp)")
@@ -101,7 +101,7 @@ class ViewController: NSViewController {
             timeStamp = Date()
             print("                                      point A: \(timeStamp)")
 
-            let tempImage = CustomImageView(frame: NSRect(x: 0, y: 0, width: 800, height: 600))
+            let tempImage = CustomImageView(frame: NSRect(x: 0, y: 0, width: 1024, height: 1024))
 
             tempImage.xa = self.xa
             tempImage.xb = self.xb
@@ -111,7 +111,7 @@ class ViewController: NSViewController {
             timeStamp = Date()
             print("                                      point B: \(timeStamp)")
 
-            tempImage.draw(NSRect(x: 0, y: 0, width: 800, height: 600))
+            tempImage.draw(NSRect(x: 0, y: 0, width: 1024, height: 1024))
 
             timeStamp = Date()
             print("                                      point C: \(timeStamp)")
@@ -135,11 +135,11 @@ class ViewController: NSViewController {
             let xWidth = self.xb - self.xa
             let xHeight = self.yb - self.ya
 
-            let xShrink = xWidth * 0.00010
-            let yShrink = xHeight * 0.00010
+            let xShrink = xWidth * 0.00012
+            let yShrink = xHeight * 0.00012
 
-            self.xa += (xShrink * 2)
-            self.xb -= (xShrink * 8)
+            self.xa += (xShrink * 0.5)
+            self.xb -= (xShrink * 9.5)
             self.ya += (yShrink * 5)
             self.yb -= (yShrink * 5)
 
